@@ -1,5 +1,14 @@
-module.exports.home = function(req, res){
-	return res.render('home', {
-		title:"Home"
+const Post = require('../models/post');
+
+module.exports.home = async function(req, res){
+	try {
+		const posts = await Post.find({}).populate('user');
+		return res.render('home', {
+		title:"Home",
+		all_posts:posts
 	})
+	} catch (error) {
+		console.log("Error while sending post to frontend", error);
+		return;
+	}
 }
