@@ -4,11 +4,14 @@
 
 	<section id="posts">
 		<h4>Posts</h4>
+
+		<% if(locals.user) {%>
 		<form action="/posts/create" id="new-post-form" method="post">
 			<textarea name="content" id="new-post-content" cols="30" rows="3" placeholder="Add new post"></textarea>
 			<input type="submit" value="post">
 		</form>
-
+		<%}%>
+		
 		<div id="post-list-container">
 			<ul>
 				<%for(post of all_posts) {%>
